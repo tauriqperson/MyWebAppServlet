@@ -22,7 +22,7 @@ public class Main {
 
         //Set up the web application context
         String webappDirLocation = "src/main/webapp/";
-        Context ctx = tomcat.addWebapp("", new File(webappDirLocation).getAbsolutePath());
+        Context ctx = tomcat.addWebapp("/MyWebAppServlet", new File(webappDirLocation).getAbsolutePath());
 
         //Declare an alternative location for compiled classes
         File additionWebInfClasses = new File("target/classes");
@@ -33,6 +33,7 @@ public class Main {
         ctx.setResources(resources);
 
         System.out.println("Starting embedded Tomcat server on port: " + webPort);
+        System.out.println("Application available at: http://localhost:" + webPort + "/MyWebAppServlet");
         tomcat.start();
         tomcat.getServer().await();
     }

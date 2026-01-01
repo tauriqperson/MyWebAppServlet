@@ -136,3 +136,10 @@ java.lang.IllegalArgumentException: Illegal base64 character 40
 2026-01-01 15:16:56 [http-bio-8081-exec-3] INFO  UserService - Login successful for user: admin
 2026-01-01 15:16:59 [http-bio-8081-exec-3] INFO  AdminServlet - Admin page accessed by: admin
 2026-01-01 15:17:01 [http-bio-8081-exec-3] INFO  AuthServlet - User logged out: admin
+2026-01-01 22:58:04 [http-nio-8081-exec-2] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-01-01 22:58:05 [http-nio-8081-exec-2] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@535eede2
+2026-01-01 22:58:05 [http-nio-8081-exec-2] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-01-01 22:58:05 [http-nio-8081-exec-2] INFO  UserService - Login attempt for user: admin
+2026-01-01 22:58:05 [http-nio-8081-exec-2] INFO  UserService - Login successful for user: admin
+2026-01-01 22:58:08 [http-nio-8081-exec-4] INFO  AdminServlet - Admin page accessed by: admin
+2026-01-01 22:58:28 [http-nio-8081-exec-10] INFO  AuthServlet - User logged out: admin
