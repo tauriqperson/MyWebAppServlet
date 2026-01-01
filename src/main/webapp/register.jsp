@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>Register</title>
-    <link rel="stylesheet" href="/webapp/css/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 </head>
 <body>
     <div class="container">
@@ -13,7 +13,7 @@
             <div class="error">${error}</div>
         </c:if>
 
-        <form action="auth/register" method="post">
+        <form action="${pageContext.request.contextPath}/auth/register" method="post">
             <div>
                 <label>Username:</label>
                 <input type="text" name="username" required>
@@ -24,13 +24,13 @@
             </div>
             <div>
                 <label>Password:</label>
-                <input type="password" name="password" required minlength="6">
+                <input type="password" name="password" required minlength="8">
             </div>
             <div>
                 <button type="submit">Register</button>
             </div>
         </form>
-        <p>Already have an account? <a href="login.jsp">Login here</a></p>
+        <p>Already have an account? <a href="${pageContext.request.contextPath}/login.jsp">Login here</a></p>
     </div>
 </body>
 </html>

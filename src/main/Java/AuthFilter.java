@@ -9,6 +9,11 @@ import java.io.IOException;
 public class AuthFilter implements Filter {
 
     @Override
+    public void init(FilterConfig filterConfig) throws ServletException {
+        //Initialization code if needed
+    }
+
+    @Override
     public void doFilter (ServletRequest request, ServletResponse response, FilterChain chain)
         throws IOException, ServletException {
 
@@ -34,5 +39,10 @@ public class AuthFilter implements Filter {
         }
 
         chain.doFilter(request, response);
+    }
+
+    @Override
+    public void destroy() {
+        //Cleanup code if needed
     }
 }

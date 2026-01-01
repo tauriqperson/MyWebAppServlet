@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>Profile</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 </head>
 <body>
     <div class="container">
@@ -18,14 +18,15 @@
         </c:if>
 
         <div class="user-info">
-            <p><strong>Username:</strong> ${user.username}</p>
-            <p><strong>Role:</strong> ${user.role}</p>
+            <p><strong>Username:</strong> <c:out value="${user.username}"/></p>
+            <p><strong>Email:</strong> <c:out value="${user.email}"/></p>
+            <p><strong>Role:</strong> <c:out value="${user.role}"/></p>
         </div>
 
-        <form action="profile" method="post">
+        <form action="${pageContext.request.contextPath}/profile" method="post">
             <div>
                 <label>Email:</label>
-                <input type="email" name="email" value="${user.email}" required>
+                <input type="email" name="email" value="<c:out value='${user.email}' />" required>
             </div>
             <div>
                 <button type="submit">Update Profile</button>
@@ -33,8 +34,8 @@
         </form>
 
         <div class="actions">
-            <a href="auth/logout">Logout</a>
+            <a href="${pageContext.request.contextPath}/auth/logout" class="logout-btn">Logout</a>
         </div>
     </div>
 </body>
-</html>>
+</html>

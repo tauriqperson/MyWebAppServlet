@@ -86,8 +86,38 @@ button:hover {
 .actions a {
     color: #007bff;
     text-decoration: none;
+    padding: 10px 20px;
+    display: inline-block;
+    font-size: 16px;
 }
 
 .actions a:hover {
+    text-decoration: underline;
+}
+
+.actions .logout-btn {
+    background-color: #dc3545;
+    color: white;
+    border-radius: 4px;
+    padding: 10px 20px;
+    text-decoration: none;
+}
+
+.actions .logout-btn:hover {
+    background-color: #c82333;
+    text-decoration: none;
+}
+
+p {
+    text-align: center;
+    margin-top: 15px;
+}
+
+p a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+p a:hover {
     text-decoration: underline;
 }

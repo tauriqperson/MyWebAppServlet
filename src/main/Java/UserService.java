@@ -1,6 +1,7 @@
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.regex.Pattern;
+import org.mindrot.jbcrypt.BCrypt;
 
 public class UserService {
     private UserDAO userDAO;
@@ -36,14 +37,17 @@ public class UserService {
             throw new IllegalArgumentException("Username already exists");
         }
 
+        //Hash the password before storing
+        String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+
         //Create new user with regular roles
-        User user = new User(0, username, password, email, "USER");
+        User user = new User(0, username, hashedPassword, email, "USER");
         return userDAO.createUser(user);
     }
 
     public User loginUser (String username, String password) throws SQLException {
         User user = userDAO.findByUsername(username);
-        if (user != null && user.getPassword().equals(password)) {
+        if (user != null && BCrypt.checkpw(password, user.getPassword())) {
             return user;
         }
         return null;

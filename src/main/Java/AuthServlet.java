@@ -52,7 +52,7 @@ public class AuthServlet extends HttpServlet {
             case "/register":
                 register(request, response);
                 break;
-            case "/lgoin":
+            case "/login":
                 login(request,response);
                 break;
             default:
