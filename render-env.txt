@@ -1,0 +1,6 @@
+JAVA_OPTS=-Xmx512m -Xms256m
+DB_HOST=your-render-db-host
+DB_PORT=3306
+DB_NAME=webapp_db
+DB_USER=webapp_user
+DB_PASSWORD=your-database-password
