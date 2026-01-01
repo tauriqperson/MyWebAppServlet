@@ -1,0 +1,30 @@
+services:
+  - type: web
+    name: mywebappservlet
+    env: java
+    region: oregon
+    plan: free
+    buildCommand: mvn clean package
+    startCommand: java -cp "target/classes:target/lib/*:target/MyWebAppServlet.war" Main
+    healthCheckPath: /
+    envVars:
+      - key: JAVA_OPTS
+        value: -Xmx512m -Xms256m
+      - key: DB_HOST
+        sync: false
+      - key: DB_PORT
+        value: "3306"
+      - key: DB_NAME
+        sync: false
+      - key: DB_USER
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+    autoDeploy: true
+
+databases:
+  - name: mywebappservlet-db
+    databaseName: webapp_db
+    user: webapp_user
+    plan: free
+    region: oregon
