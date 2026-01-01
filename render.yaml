@@ -1,11 +1,9 @@
 services:
   - type: web
     name: mywebappservlet
-    env: java
+    env: docker
     region: oregon
     plan: free
-    buildCommand: mvn clean package
-    startCommand: java -cp "target/classes:target/lib/*:target/MyWebAppServlet.war" Main
     healthCheckPath: /
     envVars:
       - key: JAVA_OPTS
