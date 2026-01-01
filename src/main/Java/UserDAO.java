@@ -2,9 +2,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class UserDAO {
-
+    private static final Logger logger = LoggerFactory.getLogger(UserDAO.class);
     private Connection connection;
 
     public UserDAO(Connection connection){
@@ -18,7 +20,16 @@ public class UserDAO {
 
             stmt.setString(1, user.getUsername());
             stmt.setString(2, user.getPassword());
-            stmt.setString(3, user.getEmail());
+            
+            // Encrypt email before storing
+            try {
+                String encryptedEmail = EncryptionUtil.encrypt(user.getEmail());
+                stmt.setString(3, encryptedEmail);
+            } catch (Exception e) {
+                logger.error("Error encrypting email for user: {}", user.getUsername(), e);
+                throw new SQLException("Failed to encrypt user data", e);
+            }
+            
             stmt.setString(4, user.getRole());
 
             int affectedRows = stmt.executeUpdate();
@@ -42,11 +53,21 @@ public class UserDAO {
 
             try (ResultSet rs = stmt.executeQuery()){
                 if (rs.next()){
+                    String encryptedEmail = rs.getString("email");
+                    String decryptedEmail = encryptedEmail;
+                    
+                    //Decrypt email when retrieving
+                    try {
+                        decryptedEmail = EncryptionUtil.decrypt(encryptedEmail);
+                    } catch (Exception e) {
+                        logger.error("Error decrypting email for user: {}", username, e);
+                    }
+                    
                     return new User(
                             rs.getInt("id"),
                             rs.getString("username"),
                             rs.getString("password"),
-                            rs.getString("email"),
+                            decryptedEmail,
                             rs.getString("role"));
                 }
             }
@@ -62,11 +83,21 @@ public class UserDAO {
 
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next ()) {
+                    String encryptedEmail = rs.getString("email");
+                    String decryptedEmail = encryptedEmail;
+                    
+                    // Decrypt email when retrieving
+                    try {
+                        decryptedEmail = EncryptionUtil.decrypt(encryptedEmail);
+                    } catch (Exception e) {
+                        logger.error("Error decrypting email for user ID: {}", id, e);
+                    }
+                    
                     return new User (
                             rs.getInt("id"),
                             rs.getString("username"),
                             rs.getString("password"),
-                            rs.getString("email"),
+                            decryptedEmail,
                             rs.getString("role"));
                 }
             }
@@ -78,7 +109,15 @@ public class UserDAO {
         String sql = "UPDATE users SET email = ? WHERE id = ?";
 
         try (PreparedStatement stmt = connection.prepareStatement(sql)){
-            stmt.setString(1, user.getEmail());
+            //Encrypt email before updating
+            try {
+                String encryptedEmail = EncryptionUtil.encrypt(user.getEmail());
+                stmt.setString(1, encryptedEmail);
+            } catch (Exception e) {
+                logger.error("Error encrypting email for user ID: {}", user.getId(), e);
+                throw new SQLException("Failed to encrypt user data", e);
+            }
+            
             stmt.setInt(2, user.getId());
             return stmt.executeUpdate() > 0;
         }

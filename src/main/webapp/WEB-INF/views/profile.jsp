@@ -34,6 +34,9 @@
         </form>
 
         <div class="actions">
+            <c:if test="${user.role == 'ADMIN'}">
+                <a href="${pageContext.request.contextPath}/admin" class="admin-btn">Admin Panel</a>
+            </c:if>
             <a href="${pageContext.request.contextPath}/auth/logout" class="logout-btn">Logout</a>
         </div>
     </div>

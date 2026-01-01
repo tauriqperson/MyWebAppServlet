@@ -7,13 +7,15 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import javax.servlet.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 
 @WebServlet("/auth/*")
 
 public class AuthServlet extends HttpServlet {
-
+    private static final Logger logger = LoggerFactory.getLogger(AuthServlet.class);
     private UserService userService;
 
     @Override
@@ -119,6 +121,10 @@ public class AuthServlet extends HttpServlet {
         HttpSession session = request.getSession(false);
 
         if (session != null) {
+            User user = (User) session.getAttribute("user");
+            if (user != null) {
+                logger.info("User logged out: {}", user.getUsername());
+            }
             session.invalidate();
         }
 

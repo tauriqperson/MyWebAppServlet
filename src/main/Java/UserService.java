@@ -2,8 +2,11 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.regex.Pattern;
 import org.mindrot.jbcrypt.BCrypt;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class UserService {
+    private static final Logger logger = LoggerFactory.getLogger(UserService.class);
     private UserDAO userDAO;
 
     public UserService(Connection connection) {
@@ -29,11 +32,12 @@ public class UserService {
     }
 
     public User registerUser(String username, String password, String email) throws SQLException {
-
+        logger.info("Attempting to register new user: {}", username);
+        
         //checking if the user does already exist
         User existingUser = userDAO.findByUsername(username);
         if (existingUser !=null){
-
+            logger.warn("Registration failed: Username already exists - {}", username);
             throw new IllegalArgumentException("Username already exists");
         }
 
@@ -42,14 +46,19 @@ public class UserService {
 
         //Create new user with regular roles
         User user = new User(0, username, hashedPassword, email, "USER");
-        return userDAO.createUser(user);
+        User createdUser = userDAO.createUser(user);
+        logger.info("User registered successfully: {}", username);
+        return createdUser;
     }
 
     public User loginUser (String username, String password) throws SQLException {
+        logger.info("Login attempt for user: {}", username);
         User user = userDAO.findByUsername(username);
         if (user != null && BCrypt.checkpw(password, user.getPassword())) {
+            logger.info("Login successful for user: {}", username);
             return user;
         }
+        logger.warn("Login failed for user: {}", username);
         return null;
     }
 
