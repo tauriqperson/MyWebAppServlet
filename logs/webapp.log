@@ -1,0 +1,138 @@
+2026-01-01 14:34:56 [http-bio-8081-exec-5] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-01-01 14:34:56 [http-bio-8081-exec-5] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5a2a544b
+2026-01-01 14:34:56 [http-bio-8081-exec-5] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-01-01 14:34:56 [http-bio-8081-exec-5] INFO  UserService - Login attempt for user: test123
+2026-01-01 14:34:56 [http-bio-8081-exec-5] ERROR UserDAO - Error decrypting email for user: test123
+java.lang.IllegalArgumentException: Illegal base64 character 40
+	at java.base/java.util.Base64$Decoder.decode0(Base64.java:852)
+	at java.base/java.util.Base64$Decoder.decode(Base64.java:570)
+	at java.base/java.util.Base64$Decoder.decode(Base64.java:593)
+	at EncryptionUtil.decrypt(EncryptionUtil.java:29)
+	at UserDAO.findByUsername(UserDAO.java:61)
+	at UserService.loginUser(UserService.java:56)
+	at AuthServlet.login(AuthServlet.java:100)
+	at AuthServlet.doPost(AuthServlet.java:58)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:647)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:728)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at AuthFilter.doFilter(AuthFilter.java:41)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:222)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:123)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:502)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:171)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:100)
+	at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:953)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:408)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1041)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:603)
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:312)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1090)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+2026-01-01 14:34:56 [http-bio-8081-exec-5] INFO  UserService - Login successful for user: test123
+2026-01-01 14:35:05 [http-bio-8081-exec-7] ERROR UserDAO - Error decrypting email for user ID: 1
+java.lang.IllegalArgumentException: Illegal base64 character 40
+	at java.base/java.util.Base64$Decoder.decode0(Base64.java:852)
+	at java.base/java.util.Base64$Decoder.decode(Base64.java:570)
+	at java.base/java.util.Base64$Decoder.decode(Base64.java:593)
+	at EncryptionUtil.decrypt(EncryptionUtil.java:29)
+	at UserDAO.findById(UserDAO.java:91)
+	at UserService.updateUserProfile(UserService.java:66)
+	at ProfileServlet.doPost(ProfileServlet.java:65)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:647)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:728)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at AuthFilter.doFilter(AuthFilter.java:41)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:222)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:123)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:502)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:171)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:100)
+	at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:953)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:408)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1041)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:603)
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:312)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1090)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+2026-01-01 14:35:14 [http-bio-8081-exec-9] INFO  AuthServlet - User logged out: test123
+2026-01-01 14:40:45 [http-bio-8081-exec-9] INFO  UserService - Attempting to register new user: test1234
+2026-01-01 14:40:45 [http-bio-8081-exec-9] INFO  UserService - User registered successfully: test1234
+2026-01-01 14:40:58 [http-bio-8081-exec-9] INFO  UserService - Login attempt for user: test1234
+2026-01-01 14:40:58 [http-bio-8081-exec-9] INFO  UserService - Login successful for user: test1234
+2026-01-01 14:55:44 [http-bio-8081-exec-5] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-01-01 14:55:44 [http-bio-8081-exec-5] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6e4b4e3b
+2026-01-01 14:55:44 [http-bio-8081-exec-5] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-01-01 14:55:45 [http-bio-8081-exec-5] INFO  UserService - Login attempt for user: admin
+2026-01-01 14:55:45 [http-bio-8081-exec-5] WARN  UserService - Login failed for user: admin
+2026-01-01 14:55:52 [http-bio-8081-exec-6] INFO  UserService - Login attempt for user: admin
+2026-01-01 14:55:52 [http-bio-8081-exec-6] WARN  UserService - Login failed for user: admin
+2026-01-01 14:56:32 [http-bio-8081-exec-7] INFO  UserService - Login attempt for user: admin
+2026-01-01 14:56:32 [http-bio-8081-exec-7] INFO  UserService - Login successful for user: admin
+2026-01-01 14:56:38 [http-bio-8081-exec-9] INFO  AdminServlet - Admin page accessed by: admin
+2026-01-01 14:56:52 [http-bio-8081-exec-10] INFO  AdminServlet - Admin page accessed by: admin
+2026-01-01 14:58:18 [http-bio-8081-exec-7] INFO  AdminServlet - Admin page accessed by: admin
+2026-01-01 15:01:13 [http-bio-8081-exec-2] INFO  AdminServlet - Admin page accessed by: admin
+2026-01-01 15:01:21 [http-bio-8081-exec-2] INFO  AdminServlet - Admin page accessed by: admin
+2026-01-01 15:01:32 [http-bio-8081-exec-2] INFO  AdminServlet - Admin page accessed by: admin
+2026-01-01 15:01:35 [http-bio-8081-exec-2] INFO  AdminServlet - Admin page accessed by: admin
+2026-01-01 15:01:37 [http-bio-8081-exec-2] INFO  AuthServlet - User logged out: admin
+2026-01-01 15:01:56 [http-bio-8081-exec-2] INFO  UserService - Login attempt for user: admin
+2026-01-01 15:01:56 [http-bio-8081-exec-2] INFO  UserService - Login successful for user: admin
+2026-01-01 15:01:58 [http-bio-8081-exec-2] INFO  AdminServlet - Admin page accessed by: admin
+2026-01-01 15:03:55 [http-bio-8081-exec-1] INFO  AdminServlet - Admin page accessed by: admin
+2026-01-01 15:03:55 [http-bio-8081-exec-1] INFO  AdminServlet - Admin page accessed by: admin
+2026-01-01 15:03:55 [http-bio-8081-exec-1] INFO  AdminServlet - Admin page accessed by: admin
+2026-01-01 15:03:56 [http-bio-8081-exec-1] INFO  AdminServlet - Admin page accessed by: admin
+2026-01-01 15:03:56 [http-bio-8081-exec-1] INFO  AdminServlet - Admin page accessed by: admin
+2026-01-01 15:04:00 [http-bio-8081-exec-6] INFO  AdminServlet - Admin page accessed by: admin
+2026-01-01 15:04:23 [http-bio-8081-exec-6] INFO  AdminServlet - Admin page accessed by: admin
+2026-01-01 15:05:44 [http-bio-8081-exec-1] INFO  AdminServlet - Admin page accessed by: admin
+2026-01-01 15:05:45 [http-bio-8081-exec-1] INFO  AdminServlet - Admin page accessed by: admin
+2026-01-01 15:05:45 [http-bio-8081-exec-1] INFO  AdminServlet - Admin page accessed by: admin
+2026-01-01 15:05:45 [http-bio-8081-exec-1] INFO  AdminServlet - Admin page accessed by: admin
+2026-01-01 15:05:45 [http-bio-8081-exec-1] INFO  AdminServlet - Admin page accessed by: admin
+2026-01-01 15:05:45 [http-bio-8081-exec-1] INFO  AdminServlet - Admin page accessed by: admin
+2026-01-01 15:06:26 [http-bio-8081-exec-1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-01-01 15:06:26 [http-bio-8081-exec-1] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@8d62556
+2026-01-01 15:06:26 [http-bio-8081-exec-1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-01-01 15:06:37 [http-bio-8081-exec-4] INFO  UserService - Login attempt for user: admin
+2026-01-01 15:06:37 [http-bio-8081-exec-4] INFO  UserService - Login successful for user: admin
+2026-01-01 15:06:39 [http-bio-8081-exec-6] INFO  AdminServlet - Admin page accessed by: admin
+2026-01-01 15:06:43 [http-bio-8081-exec-8] INFO  AdminServlet - Admin page accessed by: admin
+2026-01-01 15:06:47 [http-bio-8081-exec-10] INFO  AdminServlet - Admin page accessed by: admin
+2026-01-01 15:07:43 [http-bio-8081-exec-10] INFO  AdminServlet - Admin page accessed by: admin
+2026-01-01 15:07:59 [http-bio-8081-exec-6] INFO  AdminServlet - Admin page accessed by: admin
+2026-01-01 15:08:03 [http-bio-8081-exec-6] INFO  AuthServlet - User logged out: admin
+2026-01-01 15:08:19 [http-bio-8081-exec-6] INFO  UserService - Login attempt for user: admin
+2026-01-01 15:08:19 [http-bio-8081-exec-6] WARN  UserService - Login failed for user: admin
+2026-01-01 15:08:30 [http-bio-8081-exec-6] INFO  UserService - Login attempt for user: admin
+2026-01-01 15:08:30 [http-bio-8081-exec-6] WARN  UserService - Login failed for user: admin
+2026-01-01 15:08:43 [http-bio-8081-exec-6] INFO  UserService - Login attempt for user: admin
+2026-01-01 15:08:43 [http-bio-8081-exec-6] INFO  UserService - Login successful for user: admin
+2026-01-01 15:08:45 [http-bio-8081-exec-6] INFO  AdminServlet - Admin page accessed by: admin
+2026-01-01 15:09:32 [http-bio-8081-exec-7] INFO  AuthServlet - User logged out: admin
+2026-01-01 15:15:51 [http-bio-8081-exec-3] INFO  UserService - Login attempt for user: admin
+2026-01-01 15:15:51 [http-bio-8081-exec-3] INFO  UserService - Login successful for user: admin
+2026-01-01 15:15:54 [http-bio-8081-exec-3] INFO  AdminServlet - Admin page accessed by: admin
+2026-01-01 15:15:56 [http-bio-8081-exec-3] INFO  AdminServlet - Admin page accessed by: admin
+2026-01-01 15:16:04 [http-bio-8081-exec-3] INFO  AuthServlet - User logged out: admin
+2026-01-01 15:16:56 [http-bio-8081-exec-3] INFO  UserService - Login attempt for user: admin
+2026-01-01 15:16:56 [http-bio-8081-exec-3] INFO  UserService - Login successful for user: admin
+2026-01-01 15:16:59 [http-bio-8081-exec-3] INFO  AdminServlet - Admin page accessed by: admin
+2026-01-01 15:17:01 [http-bio-8081-exec-3] INFO  AuthServlet - User logged out: admin

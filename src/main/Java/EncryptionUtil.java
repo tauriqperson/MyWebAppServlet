@@ -5,13 +5,12 @@ import javax.crypto.spec.SecretKeySpec;
 import java.util.Base64;
 
 /**
- * Utility class for encrypting/decrypting sensitive data
- * Used for email and other sensitive user information
+ * Utility class for encrypting and decrypting data using AES algorithm.
  */
 public class EncryptionUtil {
     
     private static final String ALGORITHM = "AES";
-    // In production, store this securely (environment variable or secrets manager)
+    
     private static final String SECRET_KEY = "MySecretKey12345"; // 16 bytes for AES
     
     public static String encrypt(String data) throws Exception {

@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="User" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,33 +8,27 @@
 </head>
 <body>
     <div class="container">
-        <h1>Admin Panel</h1>
-        <%
-            User user = (User) request.getAttribute("user");
-            if (user != null) {
-        %>
-            <div class="admin-info">
-                <h2>Welcome, <%= user.getUsername() %></h2>
-                <p><strong>Role:</strong> <%= user.getRole() %></p>
-                <p><strong>Email:</strong> <%= user.getEmail() %></p>
+        <h2>Admin Panel</h2>
+        
+        <c:if test="${not empty user}">
+            <div class="user-info">
+                <p><strong>Welcome:</strong> <c:out value="${user.username}"/></p>
+                <p><strong>Role:</strong> <c:out value="${user.role}"/></p>
+                <p><strong>Email:</strong> <c:out value="${user.email}"/></p>
             </div>
             
-            <div class="admin-actions">
-                <h3>Admin Functions</h3>
-                <ul>
-                    <li>Manage Users</li>
-                    <li>View System Logs</li>
-                    <li>System Configuration</li>
-                </ul>
+            <div class="user-info">
+                <h3 style="margin-top: 0; color: #333;">Admin Functions</h3>
+                <p style="margin: 5px 0;">• Manage Users</p>
+                <p style="margin: 5px 0;">• View System Logs</p>
+                <p style="margin: 5px 0;">• System Configuration</p>
             </div>
             
-            <div class="navigation">
-                <a href="${pageContext.request.contextPath}/profile">Back to Profile</a>
-                <a href="${pageContext.request.contextPath}/auth/logout">Logout</a>
+            <div class="actions" style="display: flex; gap: 10px; justify-content: center;">
+                <a href="${pageContext.request.contextPath}/profile" style="background-color: #007bff; color: white; border-radius: 4px; padding: 10px 20px; text-decoration: none;">Back to Profile</a>
+                <a href="${pageContext.request.contextPath}/auth/logout" class="logout-btn">Logout</a>
             </div>
-        <%
-            }
-        %>
+        </c:if>
     </div>
 </body>
 </html>
