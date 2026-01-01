@@ -10,13 +10,13 @@ FROM eclipse-temurin:21-jre
 WORKDIR /app
 
 # Copy the built artifacts from build stage
-COPY --from=build /app/target/MyWebAppServlet.war ./MyWebAppServlet.war
 COPY --from=build /app/target/classes ./target/classes
 COPY --from=build /app/target/lib ./target/lib
-COPY src/main/webapp ./src/main/webapp
+COPY --from=build /app/target/MyWebAppServlet.war ./target/MyWebAppServlet.war
+COPY --from=build /app/src/main/webapp ./src/main/webapp
 
-# Expose port
+# Expose port (Render uses PORT env variable)
 EXPOSE 8080
 
-# Start the application
-CMD ["java", "-cp", "target/classes:target/lib/*:MyWebAppServlet.war", "Main"]
+# Start the application with correct classpath
+CMD ["java", "-cp", "target/classes:target/lib/*", "Main"]
