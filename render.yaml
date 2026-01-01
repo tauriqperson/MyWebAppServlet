@@ -4,7 +4,7 @@ services:
     env: docker
     region: oregon
     plan: free
-    healthCheckPath: /
+    healthCheckPath: /MyWebAppServlet/
     envVars:
       - key: JAVA_OPTS
         value: -Xmx512m -Xms256m
